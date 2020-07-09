@@ -20,7 +20,7 @@ function test_safe_divide(): void
 {
     CovMark::destroy(); // Ensure there are no previous instance
     save_divide(92, 0);
-    CovMark::check('save_divide_zero'); // This throws `CovMark\MarkNotHit` if mark is not hit 
+    assert(CovMark::check('save_divide_zero'));
 }
 ```
 

@@ -35,11 +35,10 @@ final class CovMark
         $instance->hits[$mark] = true;
     }
 
-    public static function check(string $mark): void
+    public static function check(string $mark): bool
     {
         $instance = self::getInstance();
-        if (! isset($instance->hits[$mark])) {
-            throw new MarkNotHit($mark);
-        }
+
+        return isset($instance->hits[$mark]);
     }
 }

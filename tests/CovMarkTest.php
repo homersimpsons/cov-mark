@@ -17,24 +17,19 @@ class CovMarkTest extends TestCase
     {
         CovMark::destroy();
         $this->hit();
-        CovMark::check('my_awesome_mark');
-        $this->assertTrue(true);
+        $this->assertTrue(CovMark::check('my_awesome_mark'));
     }
 
     public function testWrongHit(): void
     {
         CovMark::destroy();
-        $this->expectException(MarkNotHit::class);
         $this->hit();
-        CovMark::check('my_not_awesome_mark');
-        $this->assertTrue(true);
+        $this->assertFalse(CovMark::check('my_not_awesome_mark'));
     }
 
     public function testNoHit(): void
     {
         CovMark::destroy();
-        $this->expectException(MarkNotHit::class);
-        CovMark::check('my_awesome_mark');
-        $this->assertTrue(true);
+        $this->assertFalse(CovMark::check('my_awesome_mark'));
     }
 }
