@@ -24,6 +24,16 @@ function test_safe_divide(): void
 }
 ```
 
+## Contributing
+
+### Tests
+
+CovMark uses `PHPUnit` to run tests: `composer test`
+
+### Benchmark
+
+CovMark uses `PHPBench` to run benchmarks: `composer bench`
+
 ## Inspiration
 
 https://github.com/matklad/cov-mark

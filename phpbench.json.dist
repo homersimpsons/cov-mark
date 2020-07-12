@@ -1,0 +1,5 @@
+{
+    "path": "tests/Bench.php",
+    "bootstrap": "tests/bootstrap.php",
+    "retry_threshold": "1"
+}
