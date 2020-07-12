@@ -8,28 +8,39 @@ use PHPUnit\Framework\TestCase;
 
 class CovMarkTest extends TestCase
 {
+    private const HIT = 'my_awesome_mark';
+
     private function hit(): void
     {
-        CovMark::hit('my_awesome_mark');
+        CovMark::hit(self::HIT);
     }
 
     public function testHit(): void
     {
         CovMark::destroy();
         $this->hit();
-        $this->assertTrue(CovMark::check('my_awesome_mark'));
+        $this->assertTrue(CovMark::check(self::HIT));
     }
 
     public function testWrongHit(): void
     {
         CovMark::destroy();
         $this->hit();
-        $this->assertFalse(CovMark::check('my_not_awesome_mark'));
+        $this->assertFalse(CovMark::check('not_' . self::HIT));
     }
 
     public function testNoHit(): void
     {
         CovMark::destroy();
-        $this->assertFalse(CovMark::check('my_awesome_mark'));
+        $this->assertFalse(CovMark::check(self::HIT));
+    }
+
+    public function testDestroy(): void
+    {
+        CovMark::destroy();
+        $this->hit();
+        $this->assertTrue(CovMark::check(self::HIT));
+        CovMark::destroy();
+        $this->assertFalse(CovMark::check(self::HIT));
     }
 }

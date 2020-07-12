@@ -9,7 +9,7 @@ use PhpBench\Benchmark\Metadata\Annotations\Revs;
 
 /**
  * @Revs(5)
- * @Iterations(5)
+ * @Iterations(3)
  */
 class Bench
 {

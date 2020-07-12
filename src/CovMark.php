@@ -6,39 +6,25 @@ namespace CovMark;
 
 final class CovMark
 {
-    private static ?CovMark $_instance = null;
-
-    /** @var array<string, bool> */
-    private array $hits = []; // phpcs:ignore SlevomatCodingStandard.Classes.UnusedPrivateElements.UnusedProperty
+    /** @var array<string, true> */
+    private static array $hits = [];
 
     private function __construct()
     {
     }
 
-    private static function getInstance(): CovMark
-    {
-        if (self::$_instance === null) {
-            self::$_instance = new CovMark();
-        }
-
-        return self::$_instance;
-    }
-
     public static function destroy(): void
     {
-        self::$_instance = null;
+        self::$hits = [];
     }
 
     public static function hit(string $mark): void
     {
-        $instance              = self::getInstance();
-        $instance->hits[$mark] = true;
+        self::$hits[$mark] = true;
     }
 
     public static function check(string $mark): bool
     {
-        $instance = self::getInstance();
-
-        return isset($instance->hits[$mark]);
+        return isset(self::$hits[$mark]);
     }
 }
